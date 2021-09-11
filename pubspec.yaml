@@ -1,6 +1,6 @@
 name: hashtager
 description: Widgets and functions to implement hashtag decorated text. Decorates the words which start with `#` like a Twitter.
-version: 1.0.0
+version: 1.0.1
 author: Ehsan Amiri <ehsanamiri.dev@gmail.com>
 homepage: https://github.com/iehsanamiri/hashtager
 repository: https://github.com/iehsanamiri/hashtager

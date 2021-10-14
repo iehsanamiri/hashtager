@@ -59,44 +59,44 @@ class Detector {
   }
 
   ///Decorate tagged content, filter out the ones includes emoji.
-  List<Detection> _getEmojiFilteredDetections(
-      {required List<Detection> source,
-      String? copiedText,
-      List<RegExpMatch>? emojiMatches}) {
-    final result = <Detection>[];
-    for (var item in source) {
-      int? emojiStartPoint;
-      for (var emojiMatch in emojiMatches!) {
-        final detectionContainsEmoji = (item.range.start < emojiMatch.start &&
-            emojiMatch.end <= item.range.end);
-        if (detectionContainsEmoji) {
-          /// If the current Emoji's range.start is the smallest in the tag, update emojiStartPoint
-          emojiStartPoint = (emojiStartPoint != null)
-              ? ((emojiMatch.start < emojiStartPoint)
-                  ? emojiMatch.start
-                  : emojiStartPoint)
-              : emojiMatch.start;
-        }
-      }
-      if (item.style == decoratedStyle && emojiStartPoint != null) {
-        result.add(Detection(
-          range: TextRange(start: item.range.start, end: emojiStartPoint),
-          style: decoratedStyle,
-        ));
-        result.add(Detection(
-            range: TextRange(start: emojiStartPoint, end: item.range.end),
-            style: textStyle));
-      } else {
-        result.add(item);
-      }
-    }
-    return result;
-  }
+  // List<Detection> _getEmojiFilteredDetections(
+  //     {required List<Detection> source,
+  //     String? copiedText,
+  //     List<RegExpMatch>? emojiMatches}) {
+  //   final result = <Detection>[];
+  //   for (var item in source) {
+  //     int? emojiStartPoint;
+  //     for (var emojiMatch in emojiMatches!) {
+  //       final detectionContainsEmoji = (item.range.start < emojiMatch.start &&
+  //           emojiMatch.end <= item.range.end);
+  //       if (detectionContainsEmoji) {
+  //         /// If the current Emoji's range.start is the smallest in the tag, update emojiStartPoint
+  //         emojiStartPoint = (emojiStartPoint != null)
+  //             ? ((emojiMatch.start < emojiStartPoint)
+  //                 ? emojiMatch.start
+  //                 : emojiStartPoint)
+  //             : emojiMatch.start;
+  //       }
+  //     }
+  //     if (item.style == decoratedStyle && emojiStartPoint != null) {
+  //       result.add(Detection(
+  //         range: TextRange(start: item.range.start, end: emojiStartPoint),
+  //         style: decoratedStyle,
+  //       ));
+  //       result.add(Detection(
+  //           range: TextRange(start: emojiStartPoint, end: item.range.end),
+  //           style: textStyle));
+  //     } else {
+  //       result.add(item);
+  //     }
+  //   }
+  //   return result;
+  // }
 
   /// Return the list of decorations with tagged and untagged text
   List<Detection> getDetections(String copiedText) {
     final regExp = RegExp(
-        r'''#[^\s!@#$%^&*()=+.\/,\[{\]};:'"?><]+''',
+        r'''#[^\s!@#$%^&*()=+،.\/,\[{\]};:'"?><]+''',
         multiLine: true);
     
     final tags = regExp.allMatches(copiedText).toList();

@@ -1,3 +1,8 @@
+## 1.0.3
+
+* fixes @ detector
+
+
 ## 1.0.2
 
 * improvement

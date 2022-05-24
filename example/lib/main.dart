@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:hashtager/hashtager.dart';
-import 'package:hashtager/widgets/hashtag_text_field.dart';
 
 void main() {
   runApp(MyApp());
@@ -25,10 +24,11 @@ class _MyAppState extends State<MyApp> {
               children: <Widget>[
                 /// Tagged text only to be shown
                 HashTagText(
-                  text: "#Welcome to #hashtager\n This is #ReadOnlyText",
+                  text: "#Welcome @to #hashtager\n This is #ReadOnlyText",
                   basicStyle: TextStyle(fontSize: 22, color: Colors.black),
                   decoratedStyle: TextStyle(fontSize: 22, color: Colors.red),
                   textAlign: TextAlign.center,
+                  decorateAtSign: true,
                   onTap: (text) {
                     print(text);
                   },
@@ -38,6 +38,7 @@ class _MyAppState extends State<MyApp> {
                   decoratedStyle: TextStyle(fontSize: 15, color: Colors.blue),
                   keyboardType: TextInputType.multiline,
 
+                  decorateAtSign: true,
                   /// Called when detection (word starts with #, or # and @) is being typed
                   onDetectionTyped: (text) {
                     print(text);
